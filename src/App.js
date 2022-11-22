@@ -3,6 +3,8 @@ import './App.css';
 import Blog from './Components/Blog/Blog';
 import Courses from './Components/Courses/Courses';
 import FAQ from './Components/FAQ/FAQ';
+import Register from './Components/Form/Register';
+import SignIn from './Components/Form/SignIn';
 import Home from './Components/Home/Home';
 import Main from './layout/Main';
 
@@ -28,6 +30,14 @@ function App() {
         {
           path: '/blog',
           element: <Blog></Blog>
+        },
+        {
+          path: '/signIn',
+          element: <SignIn></SignIn>
+        },
+        {
+          path: '/register',
+          element: <Register></Register>
         },
         {
           path: '*',

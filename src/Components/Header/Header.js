@@ -23,8 +23,7 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 <div className='mx-5'>
-                    <Link className='mx-2'>Sign In</Link>
-                    <Link className='mx-2'>Register</Link>
+                    <Link to='/signIn' className='mx-2'>Sign In</Link>
                 </div>
                 <FaUserGraduate className='text-white text-3xl'></FaUserGraduate>
             </div>
