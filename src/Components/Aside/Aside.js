@@ -15,7 +15,7 @@ const Aside = () => {
             <h1>All Categories:</h1>
             {
                 categories.map(category => <p className='mt-3' key={category.id}>
-                    <Link to={`http://localhost:5000/categories/${category.id}`}>{category.name}</Link>
+                    <Link to={`category/${category.id}`}>{category.name}</Link>
                 </p>)
             }
         </div>

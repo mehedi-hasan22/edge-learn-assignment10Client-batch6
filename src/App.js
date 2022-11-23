@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Blog from './Components/Blog/Blog';
+import Category from './Components/Category/Category';
 import Courses from './Components/Courses/Courses';
 import FAQ from './Components/FAQ/FAQ';
 import Register from './Components/Form/Register';
@@ -25,6 +26,11 @@ function App() {
           loader: async () => {
             return fetch('http://localhost:5000/courses')
           }
+        },
+        {
+          path: '/courses/category/:id',
+          element: <Category></Category>,
+          loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
         },
         {
           path: '/faq',
