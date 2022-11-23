@@ -37,6 +37,10 @@ const Register = () => {
                             </div>
                             <h1 className='text-sm'>Already have an account? <Link to='/signIn' className='text-primary'>Sign In Here!</Link></h1>
                         </div>
+                        <div className='mx-auto'>
+                            <button className="btn my-2 btn-wide btn-outline">Google</button> <br />
+                            <button className='btn my-2 btn-wide btn-outline'>Github</button>
+                        </div>
                     </div>
                 </div>
             </div>
