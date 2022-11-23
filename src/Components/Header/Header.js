@@ -28,7 +28,7 @@ const Header = () => {
                     <Link to='/signIn' className='mx-2'>Sign In</Link> <br />
                 </div>
                 <div className='mx-5'>
-                    <p>{user.displayName}</p>
+                    <p>{user?.displayName}</p>
                 </div>
                 <FaUserGraduate className='text-white text-3xl'></FaUserGraduate>
             </div>
