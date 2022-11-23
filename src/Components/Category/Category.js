@@ -1,10 +1,10 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 
 const Category = () => {
     const category = useLoaderData();
     const data = category[0]
-    console.log(data)
+    // console.log(data.id)
     return (
         <div className='w-9/12 mx-auto'>
             <h1 className='text-3xl text-center'>dynamic category for: {data.title}</h1>
@@ -19,7 +19,8 @@ const Category = () => {
                     <li>24/7 support</li>
                     <li>Course finishing Certificate</li>
                 </div>
-                <button className='btn btn-primary my-5'>Get Premium</button>
+                <button className='btn btn-primary my-5'><Link to={`/checkout/${data.category_id
+                    }`}>Get Premium</Link></button>
             </div>
         </div>
     );

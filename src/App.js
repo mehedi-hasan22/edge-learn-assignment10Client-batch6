@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Blog from './Components/Blog/Blog';
 import Category from './Components/Category/Category';
+import CheckOut from './Components/Checkout/CheckOut';
 import Courses from './Components/Courses/Courses';
 import FAQ from './Components/FAQ/FAQ';
 import Register from './Components/Form/Register';
@@ -30,6 +31,11 @@ function App() {
         {
           path: '/courses/category/:id',
           element: <Category></Category>,
+          loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+        },
+        {
+          path: '/checkout/:id',
+          element: <CheckOut></CheckOut>,
           loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
         },
         {
