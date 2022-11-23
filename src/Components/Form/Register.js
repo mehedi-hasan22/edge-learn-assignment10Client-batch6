@@ -4,7 +4,7 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
 
-    const { createUser } = useContext(AuthContext)
+    const { createUser, signInGoogle } = useContext(AuthContext)
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
@@ -59,7 +59,7 @@ const Register = () => {
                             <h1 className='text-sm'>Already have an account? <Link to='/signIn' className='text-primary'>Sign In Here!</Link></h1>
                         </Form>
                         <div className='mx-auto'>
-                            <button className="btn my-2 btn-wide btn-outline">Google</button> <br />
+                            <button onClick={signInGoogle} className="btn my-2 btn-wide btn-outline">Google</button> <br />
                             <button className='btn my-2 btn-wide btn-outline'>Github</button>
                         </div>
                     </div>

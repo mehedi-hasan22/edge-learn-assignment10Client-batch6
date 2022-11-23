@@ -3,7 +3,7 @@ import { Form, Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const SignIn = () => {
-    const { signInWithPassword } = useContext(AuthContext)
+    const { signInWithPassword, } = useContext(AuthContext)
     const handleSignIn = event => {
         event.preventDefault();
         const form = event.target;
