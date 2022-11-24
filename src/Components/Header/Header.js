@@ -4,7 +4,7 @@ import { FaEdge, FaUserGraduate } from "react-icons/fa";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { user } = useContext(AuthContext)
+    const { userInfo } = useContext(AuthContext)
     return (
         <div className="navbar bg-primary">
             <div className="navbar-start">
@@ -28,9 +28,14 @@ const Header = () => {
                     <Link to='/signIn' className='mx-2'>Sign In</Link> <br />
                 </div>
                 <div className='mx-5'>
-                    <p>{user?.displayName}</p>
+                    <p>
+                        {userInfo.UID} Hi, {userInfo?.displayName}
+                    </p>
                 </div>
-                <FaUserGraduate className='text-white text-3xl'></FaUserGraduate>
+                {
+                    userInfo ? <img className='avatar rounded-full w-14' src={userInfo.photoURL} alt="" /> :
+                        <FaUserGraduate className='text-white text-3xl'></FaUserGraduate>
+                }
             </div>
         </div >
     );

@@ -12,7 +12,7 @@ const Register = () => {
         const password = form.password.value;
         console.log('clicked', email, password)
 
-        createUser(email, password)
+        createUser(email, password,)
             .then((result) => {
                 const user = result.user;
                 console.log(user)
@@ -20,6 +20,7 @@ const Register = () => {
             .catch((error) => {
                 const errorCode = error.code;
                 console.error(errorCode)
+                alert(error)
             });
     }
 

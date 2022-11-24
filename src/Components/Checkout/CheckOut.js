@@ -4,7 +4,7 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const CheckOut = () => {
 
-    const { user } = useContext(AuthContext)
+    const { user, userInfo } = useContext(AuthContext)
     console.log(user)
 
     const card = useLoaderData()[0];
@@ -16,7 +16,8 @@ const CheckOut = () => {
             </div>
             <div class="flex-initial w-1/2 m-2 my-auto">
                 <h1>{card.details}</h1>
-                <p>course ID: {card._id}</p>
+                <p className='my-5'>course ID: {card._id}</p>
+                <p>User Token: {userInfo.UID}</p>
             </div>
         </div>
     );
