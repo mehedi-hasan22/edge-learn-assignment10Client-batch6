@@ -1,8 +1,11 @@
-import React, { useContext } from 'react';
-import { Form, Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Form, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
+
+    const [error, setError] = useState('')
+    const navigate = useNavigate();
 
     const { createUser, updateUserInfo, signInGoogle, signInGitHub } = useContext(AuthContext)
     const handleRegister = event => {
@@ -20,11 +23,12 @@ const Register = () => {
                 form.reset();
                 handleUpdateUser(name, photoURL)
                 console.log(user)
+                setError('');
+                navigate('/signIn')
             })
             .catch((error) => {
                 const errorCode = error.code;
-                console.error(errorCode)
-                alert(error)
+                setError(errorCode)
             });
     }
 
@@ -35,7 +39,7 @@ const Register = () => {
         }
         updateUserInfo(profile)
             .then(() => { })
-            .catch(error => console.error(error))
+            .catch(error => setError(error))
 
     }
 
@@ -78,6 +82,7 @@ const Register = () => {
                             <button onClick={signInGoogle} className="btn my-2 btn-wide btn-outline">Google</button> <br />
                             <button onClick={signInGitHub} className='btn my-2 btn-wide btn-outline'>Github</button>
                         </div>
+                        <p className='text-rose-600'>{error}</p>
                     </div>
                 </div>
             </div>

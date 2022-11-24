@@ -1,10 +1,15 @@
-import React, { useContext } from 'react';
-import { Form, Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Form, Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
-import toast from 'react-hot-toast';
 
 const SignIn = () => {
-    const { signInWithPassword, } = useContext(AuthContext)
+
+    const [error, setError] = useState('')
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'
+    const navigate = useNavigate();
+
+    const { signInWithPassword } = useContext(AuthContext)
     const handleSignIn = event => {
         event.preventDefault();
         const form = event.target;
@@ -14,10 +19,12 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
-                toast.success('Please verify your email address.')
+                setError('')
+                navigate(from, { replace: true })
             })
             .catch(error => {
-                console.error(error)
+                console.error(error.code)
+                setError(error.code)
             })
     }
     return (
@@ -45,6 +52,7 @@ const SignIn = () => {
                                 <button type='submit' className="btn btn-primary">Login</button>
                             </div>
                             <h1 className='text-sm'>Don't have an account? <Link to='/register' className='text-primary'>Register Here!</Link></h1>
+                            <p className='text-rose-600'>{error}</p>
                         </Form>
                     </div>
                 </div>

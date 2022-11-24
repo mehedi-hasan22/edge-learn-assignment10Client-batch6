@@ -8,7 +8,7 @@ const Category = () => {
     return (
         <div className='w-9/12 mx-auto'>
             <h1 className='text-3xl text-center'>dynamic category for: {data.title}</h1>
-            <div className='mx-auto border rounded-md m-5 p-5'>
+            <div className='mx-auto border rounded-md lg:m-5 lg:p-5'>
                 <img className='mx-auto w-full rounded-md mb-4' src={data.image_url} alt="" />
                 <p>{data.details}</p>
                 <h1>Course Outline</h1>

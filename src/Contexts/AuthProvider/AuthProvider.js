@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../../Firebase/Firebase.init';
 import toast from 'react-hot-toast';
+// import { success } from 'daisyui/src/colors';
 
 
 export const AuthContext = createContext();
@@ -44,6 +45,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setLoading(true);
+        toast.success('done')
         return signOut(auth);
     }
 
@@ -102,6 +104,7 @@ const AuthProvider = ({ children }) => {
     }
 
     const signInWithPassword = async (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
 
     }

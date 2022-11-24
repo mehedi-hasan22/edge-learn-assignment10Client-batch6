@@ -8,6 +8,7 @@ import FAQ from './Components/FAQ/FAQ';
 import Register from './Components/Form/Register';
 import SignIn from './Components/Form/SignIn';
 import Home from './Components/Home/Home';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute';
 import Main from './layout/Main';
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
         },
         {
           path: '/checkout/:id',
-          element: <CheckOut></CheckOut>,
+          element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
           loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
         },
         {
