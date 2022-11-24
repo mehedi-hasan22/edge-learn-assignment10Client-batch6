@@ -4,10 +4,12 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
 
-    const { createUser, signInGoogle, signInGitHub } = useContext(AuthContext)
+    const { createUser, updateUserInfo, signInGoogle, signInGitHub } = useContext(AuthContext)
     const handleRegister = event => {
         event.preventDefault();
         const form = event.target;
+        const name = form.name.value;
+        const photoURL = form.photoURL.value;
         const email = form.email.value;
         const password = form.password.value;
         console.log('clicked', email, password)
@@ -15,6 +17,8 @@ const Register = () => {
         createUser(email, password,)
             .then((result) => {
                 const user = result.user;
+                form.reset();
+                handleUpdateUser(name, photoURL)
                 console.log(user)
             })
             .catch((error) => {
@@ -22,6 +26,17 @@ const Register = () => {
                 console.error(errorCode)
                 alert(error)
             });
+    }
+
+    const handleUpdateUser = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserInfo(profile)
+            .then(() => { })
+            .catch(error => console.error(error))
+
     }
 
     return (
@@ -40,7 +55,7 @@ const Register = () => {
                                 <label className="label">
                                     <span className="label-text">Image URL</span>
                                 </label>
-                                <input type="text" placeholder="Image URl" name='img' className="input input-bordered" />
+                                <input type="text" placeholder="Image URl" name='photoURL' className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">

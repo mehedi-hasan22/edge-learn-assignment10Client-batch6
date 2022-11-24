@@ -4,7 +4,13 @@ import { FaEdge, FaUserGraduate } from "react-icons/fa";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { userInfo } = useContext(AuthContext)
+    const { userInfo, user, logOut } = useContext(AuthContext)
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
     return (
         <div className="navbar bg-primary">
             <div className="navbar-start">
@@ -25,15 +31,23 @@ const Header = () => {
             </div>
             <div className="navbar-end">
                 <div className='mx-5'>
-                    <Link to='/signIn' className='mx-2'>Sign In</Link> <br />
-                </div>
-                <div className='mx-5'>
-                    <p>
-                        {userInfo.UID} Hi, {userInfo?.displayName}
-                    </p>
+                    <>
+                        {
+                            user?.uid ?
+                                <span className='flex'>
+                                    <button className='btn btn-primary mx-2' onClick={handleLogOut}>Log out</button>
+                                </span>
+                                :
+                                <>
+                                    <Link className='btn btn-primary' to='/signIn'>Login</Link>
+                                </>
+                        }
+
+
+                    </>
                 </div>
                 {
-                    userInfo ? <img className='avatar rounded-full w-14' src={userInfo.photoURL} alt="" /> :
+                    userInfo ? <img className='avatar rounded-full w-14' src={user?.photoURL} title={user?.displayName} alt="" /> :
                         <FaUserGraduate className='text-white text-3xl'></FaUserGraduate>
                 }
             </div>

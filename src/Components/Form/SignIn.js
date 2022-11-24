@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Form, Link } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
+import toast from 'react-hot-toast';
 
 const SignIn = () => {
     const { signInWithPassword, } = useContext(AuthContext)
@@ -13,6 +14,7 @@ const SignIn = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user)
+                toast.success('Please verify your email address.')
             })
             .catch(error => {
                 console.error(error)

@@ -1,6 +1,7 @@
-import React, { createContext, useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import React, { createContext, useEffect, useState } from 'react';
+import { createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import app from '../../Firebase/Firebase.init';
+import toast from 'react-hot-toast';
 
 
 export const AuthContext = createContext();
@@ -11,17 +12,21 @@ const AuthProvider = ({ children }) => {
     const userInfo = { displayName: '', photoURL: '', UID: '' }
 
     const [ActiveUser, setActiveUser] = useState();
-    console.log(ActiveUser)
+
+    const [users, setUsers] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
 
     const providerLogin = (provider) => {
+        setLoading(true);
         return signInWithPopup(auth, provider)
     }
 
 
     const signInGoogle = () => {
+        setLoading(true);
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user;
@@ -37,19 +42,41 @@ const AuthProvider = ({ children }) => {
             })
     }
 
+    const logOut = () => {
+        setLoading(true);
+        return signOut(auth);
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log('inside auth state change', currentUser);
+
+            if (currentUser === null || currentUser.emailVerified) {
+                setUsers(currentUser);
+            }
+            setLoading(false);
+        });
+
+        return () => {
+            unsubscribe();
+        }
+
+    }, [])
+
 
     const user = auth.currentUser;
-    if (user !== null) {
+    if (users !== null) {
         // The user object has basic properties such as display name, email, etc.
-        const displayName = user.displayName;
-        const photoURL = user.photoURL;
+        const displayName = users.displayName;
+        const photoURL = users.photoURL;
         userInfo.photoURL = photoURL;
         userInfo.displayName = displayName;
-        const uid = user.uid;
+        const uid = users.uid;
         userInfo.UID = uid;
     }
 
     const signInGitHub = () => {
+        setLoading(true);
         signInWithPopup(auth, githubProvider)
             .then(result => {
                 const user = result.user;
@@ -64,15 +91,35 @@ const AuthProvider = ({ children }) => {
             })
     }
 
+
+
     const createUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const signInWithPassword = async (email, password) => {
-        return signInWithEmailAndPassword(auth, email, password)
+    const updateUserInfo = (profile) => {
+        return updateProfile(auth.currentUser, profile)
     }
 
-    const authInfo = { user, userInfo, providerLogin, createUser, signInWithPassword, signInGoogle, signInGitHub }
+    const signInWithPassword = async (email, password) => {
+        return signInWithEmailAndPassword(auth, email, password)
+
+    }
+
+    const authInfo = {
+        user,
+        users,
+        ActiveUser,
+        userInfo,
+        updateUserInfo,
+        providerLogin,
+        createUser,
+        signInWithPassword,
+        signInGoogle,
+        signInGitHub,
+        logOut,
+        loading
+    }
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
