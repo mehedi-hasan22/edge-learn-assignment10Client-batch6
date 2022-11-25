@@ -26,18 +26,18 @@ function App() {
           path: '/courses',
           element: <Courses></Courses>,
           loader: async () => {
-            return fetch('http://localhost:5000/courses')
+            return fetch('https://assignment-10-server-drab-five.vercel.app/courses')
           }
         },
         {
           path: '/courses/category/:id',
           element: <Category></Category>,
-          loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+          loader: ({ params }) => fetch(`https://assignment-10-server-drab-five.vercel.app/categories/${params.id}`)
         },
         {
           path: '/checkout/:id',
           element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-          loader: ({ params }) => fetch(`http://localhost:5000/categories/${params.id}`)
+          loader: ({ params }) => fetch(`https://assignment-10-server-drab-five.vercel.app/categories/${params.id}`)
         },
         {
           path: '/faq',

@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Form, Link, useNavigate } from 'react-router-dom';
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
@@ -79,8 +80,8 @@ const Register = () => {
                             <h1 className='text-sm'>Already have an account? <Link to='/signIn' className='text-primary'>Sign In Here!</Link></h1>
                         </Form>
                         <div className='mx-auto'>
-                            <button onClick={signInGoogle} className="btn my-2 btn-wide btn-outline">Google</button> <br />
-                            <button onClick={signInGitHub} className='btn my-2 btn-wide btn-outline'>Github</button>
+                            <button onClick={signInGoogle} className="btn my-2 btn-wide btn-outline"><FaGoogle className='mx-2' />Google</button> <br />
+                            <button onClick={signInGitHub} className='btn my-2 btn-wide btn-outline'><FaGithub className='mx-2' />Github</button>
                         </div>
                         <p className='text-rose-600'>{error}</p>
                     </div>

@@ -47,7 +47,7 @@ const Header = () => {
                     </>
                 </div>
                 {
-                    userInfo ? <img className='avatar rounded-full w-14' src={user?.photoURL} title={user?.displayName} alt="" /> :
+                    user ? <img className='avatar rounded-full w-14' src={user?.photoURL} title={user?.displayName} alt="" /> :
                         <FaUserGraduate className='text-white text-3xl'></FaUserGraduate>
                 }
             </div>
