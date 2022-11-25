@@ -4,7 +4,7 @@ import { FaEdge, FaUserGraduate } from "react-icons/fa";
 import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
-    const { userInfo, user, logOut } = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
 
     const handleLogOut = () => {
         logOut()
