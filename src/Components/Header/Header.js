@@ -30,9 +30,11 @@ const Header = () => {
                 <Link to='/' className="btn btn-primary normal-case text-xl"><FaEdge className='m-2 text-white text-2xl' />  Edge Learn</Link>
             </div>
             <div className="navbar-end">
-                <p>dark</p>
-                <input type="checkbox" className="toggle" />
-                <p>light</p>
+                <div className='flex invisible md:visible'>
+                    <p>dark</p>
+                    <input type="checkbox" className="toggle" />
+                    <p>light</p>
+                </div>
                 <div className='mx-5'>
                     <>
                         {
