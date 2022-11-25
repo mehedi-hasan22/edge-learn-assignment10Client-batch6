@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import Pdf from "react-to-pdf";
-import { FaDownload } from "react-icons/fa";
+import { FaDownload, FaCrown } from "react-icons/fa";
 
 
 const ref = React.createRef();
@@ -30,8 +30,8 @@ const Category = () => {
                     <li>24/7 support</li>
                     <li>Course finishing Certificate</li>
                 </div>
-                <button className='btn btn-primary my-5'><Link to={`/checkout/${data.category_id
-                    }`}>Get Premium</Link></button>
+                <button className='btn btn-primary my-5'><Link className='flex justify-between align-center' to={`/checkout/${data.category_id
+                    }`}>Get Premium<FaCrown className='mx-2' /></Link></button>
             </div>
         </div >
     );
