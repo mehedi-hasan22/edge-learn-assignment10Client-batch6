@@ -1,5 +1,5 @@
 ### Live Site Link
-Tap here [Edge Learn] (https://edge-learn.firebaseapp.com/) to see live site demo.
+Tap here [Edge Learn](https://edge-learn.firebaseapp.com/) to see live site demo.
 
 Hi There!!
 I am Mehedi Hasan. I am a baby Web Hero.  Welcome to my 10th assignment.
