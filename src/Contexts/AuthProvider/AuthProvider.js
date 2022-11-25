@@ -31,7 +31,7 @@ const AuthProvider = ({ children }) => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user)
                 setActiveUser(user)
                 userInfo.displayName = user.displayName
                 userInfo.photoURL = user.photoURL
@@ -51,7 +51,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            console.log('inside auth state change', currentUser);
+            // console.log('inside auth state change', currentUser);
 
             if (currentUser === null || currentUser.emailVerified) {
                 setUsers(currentUser);
@@ -82,7 +82,7 @@ const AuthProvider = ({ children }) => {
         signInWithPopup(auth, githubProvider)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                // console.log(user)
                 setActiveUser(user)
                 userInfo.displayName = user.displayName
                 userInfo.photoURL = user.photoURL
