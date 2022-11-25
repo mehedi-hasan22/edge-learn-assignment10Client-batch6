@@ -5,7 +5,7 @@ import { AuthContext } from '../../Contexts/AuthProvider/AuthProvider';
 const CheckOut = () => {
 
     const { user } = useContext(AuthContext)
-    console.log(user)
+    // console.log(user)
 
     const card = useLoaderData()[0];
     return (
